@@ -1,17 +1,15 @@
-import random as rd
-#random_list = []
-#for i in range(1,101):
-#    random_list.append(rd.randint(1,10))
-count = 0
-dice = []
-for i in range(100):
-    dice.append([rd.randint(1,6),rd.randint(1,6)])
+name_list = ["Alice", "Bob", "Charlie", "David", "Eve", "Panda"]
+while True:#some tricky modifications to test the input to avoid numbers
+    try:
+        user_name = input("Please enter your name: ")
+        int(user_name)
+        print("I told u to enter a name right?")
+    except ValueError:
+        break
+user_name_upper = user_name.upper()#create a uppercase string of user input, 
+user_name[0] = user_name_upper[0]#try to accept the lowercase version of first letter and convert it into upper case
 
-for i in dice:
-    if i[0]==i[1] and i[0] == 6:
-        count += 1
-        
-
-
-print(count)
-#print(random_list,len(random_list),random_list.count(2))
+if user_name in name_list:#Check the list
+    print("Welcome back,", user_name) #Yes?
+else:
+    print("Access Denied")# Bye~ 

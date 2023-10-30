@@ -386,4 +386,37 @@ print("c)",sum_a+sum_b-(-2)**0)#because (-2)**0 will be added twice
 #Part 4, Q4.3
 print("Part 4, Q4.3")#Only one question left!!!!!!
 #we need random package for this
-rd.integers 
+score = 10 #initial a limit for attempt times and use is for score also
+random_number=rd.randint(1,100)#generate a random integer from 0 to 100
+#print(random_number)#Debug
+while score != 0:
+    while True:#old ways innit?
+        try:
+            user_input = int(input("Please take a guess(integer)(0-100): "))
+#            print(score)#Debug
+            break
+        except ValueError:
+            print("I told u to enter an INTEGER right?")
+    if(user_input == random_number):#let's see how user take a guess
+        print("Bingo! You get the right answer, the number is", random_number, "\nYour score is" , score)
+        break  #Correct! end this boring program
+    elif(user_input - random_number > 10):
+        #if the answer is 10 greater than the random number
+        score -= 1# HP - 1
+        print("Take another guess? Your answer is way too high, your score is" , score)
+
+    elif(10 >= (user_input - random_number) > 0):
+        #if the answer is greater than but close enough to the random number
+        score -= 1# HP - 1
+        print("Take another guess? Your answer is high but close, your score is" , score)
+        
+    elif( (random_number - user_input) > 10):
+        #if the answer is 10 less than the random number
+        score -= 1# HP - 1
+        print("Take another guess? Your answer is way too low, your score is" , score)
+        
+    elif(10 >= (random_number - user_input) > 0):
+        #if the answer is less than but close enough to the random number
+        score -= 1# HP - 1
+        print("Take another guess? Your answer is low but close, your score is" , score)
+    
