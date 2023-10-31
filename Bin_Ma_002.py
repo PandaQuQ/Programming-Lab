@@ -323,7 +323,7 @@ print(list_c)
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #Part 3, Q3.2
 print("Part 3, Q3.2")#easy one
-genral_list_x = list(range(1,101))#generate a general list
+genral_list_x = list(range(0,101))#generate a general list
 print("General list x\n" , genral_list_x)#show the list
 odd_list = [] #create all 3 lists
 even_list = []
@@ -360,6 +360,7 @@ while True:#Now I found a shorter way to build this checking loop
         print("I told u to enter an INTEGER right?")
 for x in range(1,n+1):#simply build a loop for repeating things
     print(str(x)*x,end=" ")
+print("\n")
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #Part 4, Q4.2
 #a)
@@ -419,4 +420,23 @@ while score != 0:
         #if the answer is less than but close enough to the random number
         score -= 1# HP - 1
         print("Take another guess? Your answer is low but close, your score is" , score)
-    
+if score == 0:
+    print("You failed bruh~, 0~")
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#Part 4, Q4.4
+print("Part 4, Q4.4")#The final one!!!!!
+name_list = ["Alice", "Bob", "Charlie", "David", "Eve", "Panda"]
+while True:#some tricky modifications to test the input to avoid numbers
+    try:
+        user_name = input("Please enter your name: ")
+        int(user_name)
+        print("I told u to enter a name right?")
+    except ValueError:
+        break
+user_name_upper = list(user_name)#create a uppercase string of user input, 
+user_name_upper[0] = user_name_upper[0].upper()
+user_name = "".join(user_name_upper)#try to accept the lowercase version of first letter and convert it into upper case
+if user_name in name_list:#Check the list
+    print("Welcome back,", user_name) #Yes?
+else:
+    print("Access Denied")# Bye~ 
