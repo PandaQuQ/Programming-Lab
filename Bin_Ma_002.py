@@ -8,38 +8,39 @@ import random as rd
 flag_1 = 0
 flag_2 = 0
 while flag_1 == 0:
-    try:
         while flag_2 == 0:
-            a = int(input("Part 1\nPlease enter an integer between 1 and 100: "))#ask user to enter the integer
-            flag_1 = 1
-            if (a>=1 and a<=100): #(a
-                flag_2 = 1
-                print("a)",a,"is between 1 and 100") #(a
-                a_sqrot = a**0.5 #find the square root of the given number
-                if(1<a <=3):
-                    print("b)",a,"is a prime number") #to start from 3
-                elif(a == 1):
-                    print("b)",a,"is not a prime number") #avoid 1
-                else:
-                    #a_sqrot+(21%5>0) means it can be sure that this value can be sure be used for int(equal or +1 to the original)
-                    for x in range(2,int(a_sqrot+(21 % 5 > 0))): #if the number is prime, there must be a factor number within the range of its square root
-                        if (a % x == 0):  #(b, (c
-                            print("b)",a,"is not a prime number")  #get it!
-                            if(a%2==0):
-                                smallest_factor = 2
-                            elif(a%3==0):
-                                smallest_factor = 3
-                            elif(a%a_sqrot==0):
-                                smallest_factor = a_sqrot
-                            print("c) The smallest prime factor is ",int(smallest_factor))
-                            break
-                    else:#this else can be tricky, because it follows the 'for' loop with break
-                        print("b)",a,"is a prime number")
+            try:
+                a = int(input("Part 1\nPlease enter an integer between 1 and 100: "))#ask user to enter the integer
+                flag_1 = 1
+                if (a>=1 and a<=100): #(a
+                    flag_2 = 1
+                    print("a)",a,"is between 1 and 100") #(a
+                    a_sqrot = a**0.5 #find the square root of the given number
+                    if(1<a <=3):
+                        print("b)",a,"is a prime number") #to start from 3
+                    elif(a == 1):
+                        print("b)",a,"is not a prime number") #avoid 1
+                    else:
+                        #a_sqrot+(21%5>0) means it can be sure that this value can be sure be used for int(equal or +1 to the original)
+                        for x in range(2,int(a_sqrot+(21 % 5 > 0))): #if the number is prime, there must be a factor number within the range of its square root
+                            if (a % x == 0):  #(b, (c
+                                print("b)",a,"is not a prime number")  #get it!
+                                if(a%2==0):
+                                    smallest_factor = 2
+                                elif(a%3==0):
+                                    smallest_factor = 3
+                                elif(a%a_sqrot==0):
+                                    smallest_factor = a_sqrot
+                                print("c) The smallest prime factor is ",int(smallest_factor))
+                                break
+                        else:#this else can be tricky, because it follows the 'for' loop with break
+                            print("b)",a,"is a prime number")
+            except ValueError:
+                print("What did u typed in? I told u already u should enter an INTEGER")
                     
             else:
                 print("a)",a,"is not between 1 and 100") #(a
-    except ValueError:
-        print("What did u typed in? I told u already u should enter an INTEGER")
+
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #Part 2
 #a)
@@ -429,7 +430,7 @@ print("Part 4, Q4.4")#The final one!!!!!
 name_list = ["Alice", "Bob", "Charlie", "David", "Eve", "Panda"]
 while True:#some tricky modifications to test the input to avoid numbers
     try:
-        user_name = input("Please enter your name: ")
+        user_name = input("Please enter your name(First letter uppercase nonsensitive): ")
         int(user_name)
         print("I told u to enter a name right?")
     except ValueError:
