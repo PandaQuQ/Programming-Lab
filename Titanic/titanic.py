@@ -261,6 +261,8 @@ plt.show()
 #############################################################################
 
 class_genders = titanic_data.groupby(['Pclass', 'Sex']).size().unstack()
+class_survival = titanic_data.groupby('Pclass')['Survived'].mean()
+
 # Plotting genders by class
 class_genders.plot(kind='bar', stacked=True, color=['#E81981','#FFDB5D'], figsize=(10, 6))
 plt.title('Genders by Class',font = fpath)
@@ -269,4 +271,14 @@ plt.ylabel('Count',font= fpath)
 plt.xticks(rotation=0,font= fpath)
 plt.yticks(font= fpath)
 plt.savefig('Figure_12.png',transparent=True)
+plt.show()
+
+# Plotting survival rates by class
+plt.bar(class_survival.index, class_survival, color=['#FFDB5D','#94EE6B','#E81981'])
+plt.title('Survival Rates by Class',font=fpath)
+plt.xlabel('Passenger Class',font=fpath)
+plt.ylabel('Survival Rate',font=fpath)
+plt.xticks(rotation=0,font=fpath)
+plt.yticks(font=fpath)
+plt.savefig('Figure_13.png', transparent=True)
 plt.show()

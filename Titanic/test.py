@@ -28,21 +28,26 @@ df.to_csv('titanic_sorted.csv', index=False)
 # Load the sorted Titanic dataset
 titanic_data = pd.read_csv('titanic_sorted.csv')
 
-#############################################################################
-#  Relationship between age and fare.
-#############################################################################
+class_survival = titanic_data.groupby('Pclass')['Survived'].mean()
 
-# Create a scatter plot of age vs. fare
-plt.scatter(titanic_data['Age'], titanic_data['Fare'],color='#E81981')
-#plt.arrow(20, 400, 14, 100, head_width=1, head_length=2, fc='#FFDB5D',ec='#FFDB5D')
-plt.annotate('Outliers',xy=(34,500),xytext=(20,400),
-             arrowprops={"width":2,"headwidth":10,'headlength':10,'color':'#FFDB5D'},
-             horizontalalignment='center',fontsize=15)
-plt.title('Age vs. Fare',font = fpath)
-plt.xlabel('Age',font= fpath)
-plt.ylabel('Fare',font= fpath)
-plt.xticks(rotation=0,font= fpath)
-plt.yticks(font= fpath)
-plt.tight_layout()
-plt.savefig('Figure_test.png',transparent=True)
+class_genders = titanic_data.groupby(['Pclass', 'Sex']).size().unstack()
+
+# Plotting survival rates by class
+plt.bar(class_survival.index, class_survival, color=['#FFDB5D','#94EE6B','#E81981'])
+plt.title('Survival Rates by Class',font=fpath)
+plt.xlabel('Passenger Class',font=fpath)
+plt.ylabel('Survival Rate',font=fpath)
+plt.xticks(rotation=0,font=fpath)
+plt.yticks(font=fpath)
+plt.savefig('test.png', transparent=True)
+plt.show()
+
+# Plotting genders by class
+class_genders.plot(kind='bar', stacked=True, color=['#E81981','#FFDB5D'])
+plt.title('Genders by Class',font=fpath)
+plt.xlabel('Passenger Class',font=fpath)
+plt.ylabel('Count',font=fpath)
+plt.xticks(rotation=0,font=fpath)
+plt.yticks(font=fpath)
+plt.savefig('test2.png', transparent=True)
 plt.show()
