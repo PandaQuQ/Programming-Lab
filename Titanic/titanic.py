@@ -1,6 +1,17 @@
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+import matplotlib.font_manager
+from pathlib import Path
+
+# Set font, color, and style
+matplotlib.font_manager.findSystemFonts(fontpaths='./Fonts', fontext='ttf')
+fpath = Path("Fonts/Quantico-Regular.ttf")
+COLOR = 'white'
+mpl.rcParams['text.color'] = COLOR
+mpl.rcParams['axes.labelcolor'] = COLOR
+mpl.rcParams['xtick.color'] = COLOR
+mpl.rcParams['ytick.color'] = COLOR
 
 
 #############################################################################
@@ -33,28 +44,31 @@ age_group_survival_rates = titanic_data.groupby('AgeGroup')['Survived'].mean()
 plt.figure(figsize=(10, 6))
 
 plt.subplot(1, 3, 1)
-class_survival_rates.plot(kind='bar')
-plt.title('Survival Rates by Class')
-plt.xlabel('Class')
-plt.ylabel('Survival Rate')
-plt.xticks(rotation=0)
+class_survival_rates.plot(kind='bar',color='#FFDB5D')
+plt.title('Survival Rates by Class',font= fpath)
+plt.xlabel('Class',font = fpath)
+plt.ylabel('Survival Rate',font = fpath)
+plt.xticks(rotation=0,font = fpath)
+plt.yticks(font = fpath)
 
 plt.subplot(1, 3, 2)
-gender_survival_rates.plot(kind='bar')
-plt.title('Survival Rates by Gender')
-plt.xlabel('Gender')
-plt.ylabel('Survival Rate')
-plt.xticks(rotation=0)
+gender_survival_rates.plot(kind='bar',color='#94EE6B')
+plt.title('Survival Rates by Gender',font= fpath)
+plt.xlabel('Gender',font = fpath)
+plt.ylabel('Survival Rate',font = fpath)
+plt.xticks(rotation=0,font = fpath)
+plt.yticks(font = fpath)
 
 plt.subplot(1, 3, 3)
-age_group_survival_rates.plot(kind='bar')
-plt.title('Survival Rates by Age Group')
-plt.xlabel('Age Group')
-plt.ylabel('Survival Rate')
-plt.suptitle('Survival Rates Based on Different Factors', fontsize=16)
-plt.xticks(rotation=0)
-plt.tight_layout()
-plt.savefig('Figure_1.png')
+age_group_survival_rates.plot(kind='bar',color='#E81981')
+plt.title('Survival Rates by Age Group',font = fpath)
+plt.xlabel('Age Group',font = fpath)
+plt.ylabel('Survival Rate',font = fpath)
+plt.suptitle('Survival Rates Based on Different Factors', fontsize=16,font = fpath)
+plt.xticks(rotation=0,font = fpath)
+plt.yticks(font = fpath)
+#plt.tight_layout()
+plt.savefig('Figure_1.png',transparent=True)
 plt.show()
 
 #############################################################################
@@ -66,13 +80,14 @@ age_distribution_by_class = titanic_data.groupby('Pclass')['Age'].mean()
 
 # Plot the age distribution by passenger class
 plt.figure(figsize=(10, 6))
-age_distribution_by_class.plot(kind='bar')
-plt.title('Age Distribution by Passenger Class')
-plt.xlabel('Passenger Class')
-plt.ylabel('Average Age')
-plt.xticks(rotation=0)
+age_distribution_by_class.plot(kind='bar',color=['#FFDB5D','#94EE6B','#E81981'])
+plt.title('Age Distribution by Passenger Class',font = fpath)
+plt.xlabel('Passenger Class',font = fpath)
+plt.ylabel('Average Age',font = fpath)
+plt.xticks(rotation=0,font = fpath)
+plt.yticks(font = fpath)
 plt.tight_layout()
-plt.savefig('Figure_2.png')
+plt.savefig('Figure_2.png',transparent=True)
 plt.show()
 
 
@@ -90,10 +105,14 @@ df_female = grouped_data.loc[grouped_data['Sex'] == 'female']
 # create male part
 x = df_male['Age']
 y = df_male['Pclass']
-plt.scatter(x,y)
+plt.xticks(rotation=0,font = fpath)
+plt.yticks(font = fpath)
+plt.xlabel('Age',font = fpath)
+plt.ylabel('Passenger Class',font = fpath)
+plt.scatter(x,y,color='#E81981')
 
 # Show the plot
-plt.savefig('Figure_3.png')
+plt.savefig('Figure_3.png',transparent=True)
 plt.show()
 
 #############################################################################
@@ -103,13 +122,14 @@ plt.show()
 parch_survival_rates = titanic_data.groupby('Parch')['Survived'].mean()
 # Plot the survival rates
 plt.figure(figsize=(10, 6))
-parch_survival_rates.plot(kind='bar')
-plt.title('Survival Rates by Number of Parents/Children Aboard')
-plt.xlabel('Number of Parents/Children Aboard')
-plt.xticks(rotation=0)
-plt.ylabel('Survival Rate')
+parch_survival_rates.plot(kind='bar',color=['#FFDB5D','#94EE6B','#E81981'])
+plt.title('Survival Rates by Number of Parents/Children Aboard',font = fpath)
+plt.xlabel('Number of Parents/Children Aboard',font= fpath)
+plt.xticks(rotation=0,font= fpath)
+plt.yticks(font= fpath)
+plt.ylabel('Survival Rate',font= fpath)
 plt.tight_layout()
-plt.savefig('Figure_4.png')
+plt.savefig('Figure_4.png',transparent=True)
 plt.show()
 
 #############################################################################
@@ -119,13 +139,14 @@ plt.show()
 average_fare = titanic_data.groupby('Pclass')['Fare'].mean()
 # Plot the average fare
 plt.figure(figsize=(10, 6))
-average_fare.plot(kind='bar')
-plt.title('Average Fare by Passenger Class')
-plt.xlabel('Passenger Class')
-plt.ylabel('Average Fare')
-plt.xticks(rotation=0)
+average_fare.plot(kind='bar',color=['#FFDB5D','#94EE6B','#E81981'])
+plt.title('Average Fare by Passenger Class',font = fpath)
+plt.xlabel('Passenger Class',font= fpath)
+plt.ylabel('Average Fare',font= fpath)
+plt.xticks(rotation=0,font= fpath)
+plt.yticks(font= fpath)
 plt.tight_layout()
-plt.savefig('Figure_5.png')
+plt.savefig('Figure_5.png',transparent=True)
 plt.show()
 
 #############################################################################
@@ -133,12 +154,14 @@ plt.show()
 #############################################################################
 
 # Create a scatter plot of age vs. fare
-plt.scatter(titanic_data['Age'], titanic_data['Fare'])
-plt.title('Age vs. Fare')
-plt.xlabel('Age')
-plt.ylabel('Fare')
+plt.scatter(titanic_data['Age'], titanic_data['Fare'],color='#E81981')
+plt.title('Age vs. Fare',font = fpath)
+plt.xlabel('Age',font= fpath)
+plt.ylabel('Fare',font= fpath)
+plt.xticks(rotation=0,font= fpath)
+plt.yticks(font= fpath)
 plt.tight_layout()
-plt.savefig('Figure_6.png')
+plt.savefig('Figure_6.png',transparent=True)
 plt.show()
 
 #############################################################################
@@ -150,13 +173,14 @@ grouped_data = titanic_data.loc[titanic_data['Survived'] == 1]
 average_survivor_age = grouped_data.groupby('Pclass')['Age'].mean()
 # Plot the average survivor age
 plt.figure(figsize=(10, 6))
-average_survivor_age.plot(kind='bar')
-plt.title('Average Survivor Age by Passenger Class')
-plt.xlabel('Passenger Class')
-plt.ylabel('Average Survivor Age')
-plt.xticks(rotation=0)
+average_survivor_age.plot(kind='bar',color=['#FFDB5D','#94EE6B','#E81981'])
+plt.title('Average Survivor Age by Passenger Class',font = fpath)
+plt.xlabel('Passenger Class',font= fpath)
+plt.ylabel('Average Survivor Age',font= fpath)
+plt.xticks(rotation=0,font= fpath)
+plt.yticks(font= fpath)
 plt.tight_layout()
-plt.savefig('Figure_7.png')
+plt.savefig('Figure_7.png',transparent=True)
 plt.show()
 
 #############################################################################
@@ -168,13 +192,14 @@ grouped_data = titanic_data.loc[titanic_data['Survived'] == 0]
 average_death_age = grouped_data.groupby('Pclass')['Age'].mean()
 # Plot the average death age
 plt.figure(figsize=(10, 6))
-average_death_age.plot(kind='bar')
-plt.title('Average Death Age by Passenger Class')
-plt.xlabel('Passenger Class')
-plt.ylabel('Average Death Age')
-plt.xticks(rotation=0)
+average_death_age.plot(kind='bar',color=['#FFDB5D','#94EE6B','#E81981'])
+plt.title('Average Death Age by Passenger Class',font = fpath)
+plt.xlabel('Passenger Class',font= fpath)
+plt.ylabel('Average Death Age',font= fpath)
+plt.xticks(rotation=0,font= fpath)
+plt.yticks(font= fpath)
 plt.tight_layout()
-plt.savefig('Figure_8.png')
+plt.savefig('Figure_8.png',transparent=True)
 plt.show()
 
 #############################################################################
@@ -185,10 +210,12 @@ plt.show()
 passenger_class_distribution = titanic_data['Pclass'].value_counts()
 # Plot the passenger class distribution
 plt.figure(figsize=(10, 6))
-passenger_class_distribution.plot(kind='pie', autopct='%.2f%%')
-plt.title('Passenger Class Distribution')
+passenger_class_distribution.plot(kind='pie', autopct='%.2f%%',colors=['#FFDB5D','#94EE6B','#E81981'])
+plt.title('Passenger Class Distribution',font = fpath)
+plt.xticks(rotation=0,font= fpath)
+plt.yticks(font= fpath)
 plt.tight_layout()
-plt.savefig('Figure_9.png')
+plt.savefig('Figure_9.png',transparent=True)
 plt.show()
 
 #############################################################################
@@ -199,10 +226,12 @@ plt.show()
 passenger_embarkation_port_distribution = titanic_data['Embarked'].value_counts()
 # Plot the passenger embarkation port distribution
 plt.figure(figsize=(10, 6))
-passenger_embarkation_port_distribution.plot(kind='pie', autopct='%.2f%%')
-plt.title('Passenger Embarkation Port Distribution')
+passenger_embarkation_port_distribution.plot(kind='pie', autopct='%.2f%%',colors=['#FFDB5D','#94EE6B','#E81981'])
+plt.title('Passenger Embarkation Port Distribution',font = fpath)
+plt.xticks(rotation=0,font= fpath)
+plt.yticks(font= fpath)
 plt.tight_layout()
-plt.savefig('Figure_10.png')
+plt.savefig('Figure_10.png',transparent=True)
 plt.show()
 
 #############################################################################
@@ -213,10 +242,12 @@ plt.show()
 passenger_sex_distribution = titanic_data['Sex'].value_counts()
 # Plot the passenger sex distribution
 plt.figure(figsize=(10, 6))
-passenger_sex_distribution.plot(kind='pie', autopct='%.2f%%')
-plt.title('Passenger Sex Distribution')
+passenger_sex_distribution.plot(kind='pie', autopct='%.2f%%',colors=['#FFDB5D','#94EE6B'])
+plt.title('Passenger Sex Distribution',font = fpath)
+plt.xticks(rotation=0,font= fpath)
+plt.yticks(font= fpath)
 plt.tight_layout()
-plt.savefig('Figure_11.png')
+plt.savefig('Figure_11.png',transparent=True)
 plt.show()
 
 #############################################################################
@@ -226,9 +257,11 @@ plt.show()
 
 class_genders = titanic_data.groupby(['Pclass', 'Sex']).size().unstack()
 # Plotting genders by class
-class_genders.plot(kind='bar', stacked=True)
-plt.title('Genders by Class')
-plt.xlabel('Class')
-plt.ylabel('Count')
-plt.savefig('Figure_12.png')
+class_genders.plot(kind='bar', stacked=True, color=['#E81981','#FFDB5D'], figsize=(10, 6))
+plt.title('Genders by Class',font = fpath)
+plt.xlabel('Class',font= fpath)
+plt.ylabel('Count',font= fpath)
+plt.xticks(rotation=0,font= fpath)
+plt.yticks(font= fpath)
+plt.savefig('Figure_12.png',transparent=True)
 plt.show()
