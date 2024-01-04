@@ -13,6 +13,7 @@ mpl.rcParams['axes.labelcolor'] = COLOR
 mpl.rcParams['xtick.color'] = COLOR
 mpl.rcParams['ytick.color'] = COLOR
 
+print('A')
 
 #############################################################################
 # Survival rates based on different factors (class, gender, age group)
