@@ -1,8 +1,6 @@
 import pandas as pd
 import numpy as np
-from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
-import datasorting
 
 
 #############################################################################
@@ -10,7 +8,11 @@ import datasorting
 #############################################################################
 
 # Sort the Titanic dataset
-datasorting.sort_data()
+# Load the Titanic dataset
+df = pd.read_csv('titanic.csv', usecols=['PassengerId', 'Survived','Pclass','Name','Sex','Age','SibSp','Parch','Fare','Embarked'])
+#    print(df.head())
+# Save the sorted data to a new file
+df.to_csv('titanic_sorted.csv', index=False)
 
 # Load the sorted Titanic dataset
 titanic_data = pd.read_csv('titanic_sorted.csv')
