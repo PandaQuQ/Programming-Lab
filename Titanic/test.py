@@ -21,52 +21,27 @@ mpl.rcParams['ytick.color'] = COLOR
 # Sort the Titanic dataset
 # Load the Titanic dataset
 df = pd.read_csv('titanic.csv', usecols=['PassengerId', 'Survived','Pclass','Name','Sex','Age','SibSp','Parch','Fare','Embarked'])
-#    print(df.head())
 # Save the sorted data to a new file
 df.to_csv('titanic_sorted.csv', index=False)
 
 # Load the sorted Titanic dataset
 titanic_data = pd.read_csv('titanic_sorted.csv')
 
-# Calculate survival rates based on class
-class_survival_rates = titanic_data.groupby('Pclass')['Survived'].mean()
+#############################################################################
+#  Relationship between age and fare.
+#############################################################################
 
-# Calculate survival rates based on gender
-gender_survival_rates = titanic_data.groupby('Sex')['Survived'].mean()
-
-# Calculate survival rates based on age group
-age_group_bins = [0, 18, 30, 50, 100]
-age_group_labels = ['0-18', '19-30', '31-50', '51+']
-titanic_data['AgeGroup'] = pd.cut(titanic_data['Age'], bins=age_group_bins, labels=age_group_labels)
-age_group_survival_rates = titanic_data.groupby('AgeGroup')['Survived'].mean()
-
-# Plot the survival rates
-plt.figure(figsize=(10, 6))
-
-plt.subplot(1, 3, 1)
-class_survival_rates.plot(kind='bar',color='#FFDB5D')
-plt.title('Survival Rates by Class',font= fpath)
-plt.xlabel('Class',font = fpath)
-plt.ylabel('Survival Rate',font = fpath)
-plt.xticks(rotation=0,font = fpath)
-plt.yticks(font = fpath)
-
-plt.subplot(1, 3, 2)
-gender_survival_rates.plot(kind='bar',color='#94EE6B')
-plt.title('Survival Rates by Gender',font= fpath)
-plt.xlabel('Gender',font = fpath)
-plt.ylabel('Survival Rate',font = fpath)
-plt.xticks(rotation=0,font = fpath)
-plt.yticks(font = fpath)
-
-plt.subplot(1, 3, 3)
-age_group_survival_rates.plot(kind='bar',color='#E81981')
-plt.title('Survival Rates by Age Group',font = fpath)
-plt.xlabel('Age Group',font = fpath)
-plt.ylabel('Survival Rate',font = fpath)
-plt.suptitle('Survival Rates Based on Different Factors', fontsize=16,font = fpath)
-plt.xticks(rotation=0,font = fpath)
-plt.yticks(font = fpath)
-#plt.tight_layout()
+# Create a scatter plot of age vs. fare
+plt.scatter(titanic_data['Age'], titanic_data['Fare'],color='#E81981')
+#plt.arrow(20, 400, 14, 100, head_width=1, head_length=2, fc='#FFDB5D',ec='#FFDB5D')
+plt.annotate('Outliers',xy=(34,500),xytext=(20,400),
+             arrowprops={"width":2,"headwidth":10,'headlength':10,'color':'#FFDB5D'},
+             horizontalalignment='center',fontsize=15)
+plt.title('Age vs. Fare',font = fpath)
+plt.xlabel('Age',font= fpath)
+plt.ylabel('Fare',font= fpath)
+plt.xticks(rotation=0,font= fpath)
+plt.yticks(font= fpath)
+plt.tight_layout()
 plt.savefig('Figure_test.png',transparent=True)
 plt.show()

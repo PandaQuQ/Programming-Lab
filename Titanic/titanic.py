@@ -155,6 +155,10 @@ plt.show()
 
 # Create a scatter plot of age vs. fare
 plt.scatter(titanic_data['Age'], titanic_data['Fare'],color='#E81981')
+#plt.arrow(20, 400, 14, 100, head_width=1, head_length=2, fc='#FFDB5D',ec='#FFDB5D')
+plt.annotate('Outliers',xy=(34,500),xytext=(20,400),
+             arrowprops={"width":2,"headwidth":10,'headlength':10,'color':'#FFDB5D'},
+             horizontalalignment='center',fontsize=15)
 plt.title('Age vs. Fare',font = fpath)
 plt.xlabel('Age',font= fpath)
 plt.ylabel('Fare',font= fpath)
@@ -163,6 +167,7 @@ plt.yticks(font= fpath)
 plt.tight_layout()
 plt.savefig('Figure_6.png',transparent=True)
 plt.show()
+
 
 #############################################################################
 #  Average survivor age by passenger class.
