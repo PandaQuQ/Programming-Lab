@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
+import datasorting
 
 
 #############################################################################
@@ -9,6 +10,7 @@ import matplotlib.pyplot as plt
 #############################################################################
 
 # Load the Titanic dataset
+datasorting.sort_data()
 titanic_data = pd.read_csv('titanic.csv')
 
 # Calculate survival rates based on class
