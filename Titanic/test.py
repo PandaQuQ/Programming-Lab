@@ -34,20 +34,27 @@ class_genders = titanic_data.groupby(['Pclass', 'Sex']).size().unstack()
 
 # Plotting survival rates by class
 plt.bar(class_survival.index, class_survival, color=['#FFDB5D','#94EE6B','#E81981'])
-plt.title('Survival Rates by Class',font=fpath)
-plt.xlabel('Passenger Class',font=fpath)
-plt.ylabel('Survival Rate',font=fpath)
-plt.xticks(rotation=0,font=fpath)
-plt.yticks(font=fpath)
-plt.savefig('test.png', transparent=True)
+plt.title('Survival Rates by Class')
+plt.xlabel('Class')
+plt.ylabel('Survival Rate')
+
+# Adding percentage labels to the survival rates by class 
+for p in plt.gca().containers:
+    plt.gca().bar_label(p, color='white', fmt='%.2f%%')
+    
+plt.savefig('Figure_12.png', transparent=True)
 plt.show()
 
+
 # Plotting genders by class
-class_genders.plot(kind='bar', stacked=True, color=['#E81981','#FFDB5D'])
-plt.title('Genders by Class',font=fpath)
-plt.xlabel('Passenger Class',font=fpath)
-plt.ylabel('Count',font=fpath)
-plt.xticks(rotation=0,font=fpath)
-plt.yticks(font=fpath)
-plt.savefig('test2.png', transparent=True)
+class_genders.plot(kind='barh', stacked=True, color=['#FFDB5D','#E81981'])
+plt.title('Genders by Class')
+plt.xlabel('Count')
+plt.ylabel('Class')
+
+# Adding percentage labels to the genders by class 
+for p in plt.gca().containers:
+    plt.gca().bar_label(p, color='white', fmt='%.1f%%')
+
+plt.savefig('Figure_13.png', transparent=True)
 plt.show()
