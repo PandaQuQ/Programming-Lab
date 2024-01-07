@@ -265,28 +265,28 @@ class_survival = titanic_data.groupby('Pclass')['Survived'].mean()
 class_genders = titanic_data.groupby(['Pclass', 'Sex']).size().unstack()
 
 # Plotting survival rates by class
-plt.bar(class_survival.index, class_survival, color='pink')
+plt.bar(class_survival.index, class_survival, color=['#FFDB5D','#94EE6B','#E81981'])
 plt.title('Survival Rates by Class')
 plt.xlabel('Class')
 plt.ylabel('Survival Rate')
 
 # Adding percentage labels to the survival rates by class 
 for p in plt.gca().containers:
-    plt.gca().bar_label(p, color='black', fmt='%.2f%%')
+    plt.gca().bar_label(p, color='white', fmt='%.2f%%')
     
-plt.savefig('Figure_12.png')
+plt.savefig('Figure_12.png', transparent=True)
 plt.show()
 
 
 # Plotting genders by class
-class_genders.plot(kind='barh', stacked=True)
+class_genders.plot(kind='barh', stacked=True, color=['#FFDB5D','#E81981'])
 plt.title('Genders by Class')
 plt.xlabel('Count')
 plt.ylabel('Class')
 
 # Adding percentage labels to the genders by class 
 for p in plt.gca().containers:
-    plt.gca().bar_label(p, color='black', fmt='%.1f%%')
+    plt.gca().bar_label(p, color='white', fmt='%.1f%%')
 
-plt.savefig('Figure_13.png')
+plt.savefig('Figure_13.png', transparent=True)
 plt.show()
