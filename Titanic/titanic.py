@@ -274,7 +274,7 @@ plt.ylabel('Survival Rate')
 for p in plt.gca().containers:
     plt.gca().bar_label(p, color='black', fmt='%.2f%%')
     
-plt.savefig('Survival Rates by Class')
+plt.savefig('Figure_12.png')
 plt.show()
 
 
@@ -288,5 +288,5 @@ plt.ylabel('Class')
 for p in plt.gca().containers:
     plt.gca().bar_label(p, color='black', fmt='%.1f%%')
 
-plt.savefig('Genders by Class')
+plt.savefig('Figure_13.png')
 plt.show()
